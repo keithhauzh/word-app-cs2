@@ -29,12 +29,19 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         lifecycleScope.launch {
             viewModel.finish.collect {
                 setFragmentResult("manage_word", Bundle())
                 findNavController().popBackStack()
             }
+        }
+        binding.mbSubmit.setOnClickListener {
+            viewModel.addWord(
+                title = binding.etTitle.text.toString(),
+                meaning = binding.etMeaning.text.toString(),
+                synonyms = binding.etSynonyms.text.toString(),
+                details = binding.etDetails.text.toString()
+            )
         }
     }
 }
