@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.manageBook
+package com.keith.word_app_cs2.data.fragments.manageWord
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
