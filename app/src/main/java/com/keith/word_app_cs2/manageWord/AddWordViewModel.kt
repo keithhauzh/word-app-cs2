@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.manageBook
+package com.keith.word_app_cs2.manageWord
 
 //class AddWordViewModel : BaseManageViewModel() {
 //    override fun submit(){
