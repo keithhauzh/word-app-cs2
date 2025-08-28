@@ -8,7 +8,7 @@ class WordsRepo private constructor(){
 
     var counter = 0
 
-    fun addWord(word: Word) {
+    fun add(word: Word) {
         map[++counter] = word.copy(id = counter)
     }
 
