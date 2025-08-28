@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.home
+package com.keith.word_app_cs2.data.fragments.home
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.keith.word_app_cs2.R
 import com.keith.word_app_cs2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

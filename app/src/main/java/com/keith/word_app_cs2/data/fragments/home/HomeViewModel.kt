@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.home
+package com.keith.word_app_cs2.data.fragments.home
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
