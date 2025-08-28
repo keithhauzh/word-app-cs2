@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.adapter
+package com.keith.word_app_cs2.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

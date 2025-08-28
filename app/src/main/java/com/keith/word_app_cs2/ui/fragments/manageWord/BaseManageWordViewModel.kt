@@ -1,4 +1,4 @@
-package com.keith.word_app_cs2.manageWord
+package com.keith.word_app_cs2.ui.fragments.manageWord
 
 import androidx.lifecycle.ViewModel
 import com.keith.word_app_cs2.data.repo.WordsRepo
