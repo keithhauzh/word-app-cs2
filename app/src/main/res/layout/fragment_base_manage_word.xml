@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".manageWord.BaseManageWordFragment">
+    tools:context=".ui.fragments.manageWord.AddWordFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/s"
         android:textSize="@dimen/tx_xl"
         android:textStyle="bold"
-        android:text="Title" />
+        android:text="@string/title" />
 
     <EditText
         android:id="@+id/etTitle"
@@ -47,7 +47,7 @@
         android:scrollHorizontally="true"
         android:scrollbars="horizontal"
         android:singleLine="true"
-        android:hint="Title"/>
+        android:hint="@string/title"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/xxxxl"
         android:textSize="@dimen/tx_xl"
         android:textStyle="bold"
-        android:text="Meaning" />
+        android:text="@string/meaning" />
 
     <EditText
         android:id="@+id/etMeaning"
@@ -68,7 +68,7 @@
         android:scrollHorizontally="true"
         android:scrollbars="horizontal"
         android:singleLine="true"
-        android:hint="Meaning"/>
+        android:hint="@string/meaning"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
         android:layout_marginTop="@dimen/xxxxl"
         android:textSize="@dimen/tx_xl"
         android:textStyle="bold"
-        android:text="Synonyms" />
+        android:text="@string/synonyms" />
 
     <EditText
         android:id="@+id/etSynonyms"
@@ -89,7 +89,7 @@
         android:scrollHorizontally="true"
         android:scrollbars="horizontal"
         android:singleLine="true"
-        android:hint="Synonym"/>
+        android:hint="@string/synonyms"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
         android:layout_marginTop="@dimen/xxxxl"
         android:textSize="@dimen/tx_xl"
         android:textStyle="bold"
-        android:text="Details" />
+        android:text="@string/details" />
 
     <EditText
         android:id="@+id/etDetails"
@@ -110,7 +110,7 @@
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:maxLines="2"
-        android:hint="Details ................................................................................................................................................"/>
+        android:hint="@string/details"/>
 
     <Space
         android:layout_width="match_parent"
@@ -126,7 +126,7 @@
         android:layout_marginBottom="@dimen/m"
         android:paddingVertical="@dimen/m"
         android:textSize="@dimen/tx_xl"
-        android:text="Add"/>
+        android:text="@string/add"/>
 
 </LinearLayout>
 
