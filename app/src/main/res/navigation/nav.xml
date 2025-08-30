@@ -7,7 +7,26 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.keith.word_app_cs2.data.fragments.home.HomeFragment"
+        android:name="com.keith.word_app_cs2.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editWordFragment"
+            app:destination="@id/editWordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="com.keith.word_app_cs2.ui.fragments.manageWord.AddWordFragment"
+        android:label="fragment_base_manage_word"
+        tools:layout="@layout/fragment_base_manage_word" />
+    <fragment
+        android:id="@+id/editWordFragment"
+        android:name="com.keith.word_app_cs2.ui.fragments.manageWord.EditWordFragment"
+        android:label="EditWordFragment"
+        tools:layout="@layout/fragment_base_manage_word">
+        <argument android:name="word_id" app:argType="integer"/>
+    </fragment>
 </navigation>

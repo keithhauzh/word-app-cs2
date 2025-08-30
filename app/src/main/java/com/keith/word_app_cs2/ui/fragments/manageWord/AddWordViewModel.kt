@@ -14,7 +14,14 @@ class AddWordViewModel(
     private val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()
 
-    fun addWord(word: Word) {
+    fun addWord(title: String, meaning: String, synonyms: String, details: String) {
+        val word = Word(
+            title = title,
+            meaning = meaning,
+            synonyms = synonyms,
+            details = details,
+            createdAt = System.currentTimeMillis()
+        )
         repo.add(word)
         viewModelScope.launch {
             _finish.emit(Unit)
