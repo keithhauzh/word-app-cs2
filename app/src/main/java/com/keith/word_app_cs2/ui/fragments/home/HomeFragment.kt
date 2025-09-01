@@ -40,20 +40,20 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToAddWordFragment()
             findNavController().navigate(action)
         }
-        setFragmentResultListener("manage_word") {_, _ ->
+        setFragmentResultListener("manage_word") { _, _ ->
             viewModel.getWords()
         }
     }
 
     fun setupAdapter() {
-        adapter = WordsAdapter(emptyList())
+        adapter = WordsAdapter(emptyList()) {
+            val action = HomeFragmentDirections.actionHomeFragmentToWordDetailsFragment(
+                wordId = it.id!!,
+            )
+
+            findNavController().navigate(action)
+        }
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
-//        adapter.setListener(object: WordsAdapter.Listener{
-//            override fun onClick(word: Word){
-//                val action = HomeFragmentDirections.actionHomeToEditBook(book.id!!)
-//                findNavController().navigate(action)
-//            }
-//        })
     }
 }
