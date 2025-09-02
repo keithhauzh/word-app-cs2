@@ -47,7 +47,7 @@ class WordDetailsFragment : Fragment() {
             viewModel.word.collect {
                 binding.run {
                     tvTitle.text = it?.title.toString()
-                    tvDetails.text = it?.details.toString()
+                    tvMeaning.text = it?.meaning.toString()
                     tvSyn.text = it?.synonyms.toString()
                     tvDetails.text = it?.details.toString()
                 }
