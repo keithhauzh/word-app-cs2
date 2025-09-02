@@ -53,11 +53,12 @@ class WordDetailsFragment : Fragment() {
                 }
             }
         }
-
-
         binding.run {
             mbUpdate.setOnClickListener {
-                findNavController().navigate("editWordFragment")
+                val action = WordDetailsFragmentDirections.actionWordDetailsFragmentToEditWordFragment(
+                    wordId = it.id
+                )
+                findNavController().navigate(action)
             }
         }
     }
