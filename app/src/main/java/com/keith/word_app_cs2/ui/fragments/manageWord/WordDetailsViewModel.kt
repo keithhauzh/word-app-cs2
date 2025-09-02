@@ -22,4 +22,18 @@ class WordDetailsViewModel(
              _word.value = it
          }
     }
+    fun deleteWord(id: Int) {
+        repo.deleteWord(id)
+        viewModelScope.launch {
+            _finish.emit(Unit)
+        }
+    }
+
+    fun isDone(id: Int) {
+        repo.isCompleted(id)
+        _word.value = repo.getWordById(id)
+//        viewModelScope.launch {
+//            _finish.emit(Unit)
+//        }
+    }
 }

@@ -18,6 +18,13 @@ class WordsRepo private constructor(){
     fun updateWord(id: Int, word: Word) {
         map[id] = word
     }
+
+    fun isCompleted(id: Int) {
+        map[id]?.let { word ->
+            map[id] = word.copy(completed = true)
+        }
+    }
+
     companion object {
         private var instance: WordsRepo? = null
         fun getInstance(): WordsRepo {
