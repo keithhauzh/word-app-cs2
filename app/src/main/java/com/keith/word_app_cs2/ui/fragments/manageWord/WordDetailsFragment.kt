@@ -57,7 +57,8 @@ class WordDetailsFragment : Fragment() {
 
         binding.run {
             mbUpdate.setOnClickListener {
-                findNavController().navigate("editWordFragment")
+                val action = WordDetailsFragmentDirections.actionWordDetailsFragmentToEditWordFragment(args.wordId)
+                findNavController().navigate(action)
             }
         }
     }
