@@ -9,6 +9,7 @@
     android:id="@+id/cvWord">
 
     <LinearLayout
+        android:id="@+id/llWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -22,7 +23,7 @@
             android:layout_marginHorizontal="8dp"
             android:maxLines="1"
             android:ellipsize="end"
-            android:text="Hello"/>
+            android:text="@string/hello"/>
 
         <TextView
             android:id="@+id/tvMeaning"
@@ -33,7 +34,7 @@
             android:layout_marginHorizontal="8dp"
             android:maxLines="2"
             android:ellipsize="end"
-            android:text="Definition: Hello World"/>
+            android:text="@string/definition_hello_world"/>
 
     </LinearLayout>
 

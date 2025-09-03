@@ -16,7 +16,11 @@
         <action
             android:id="@+id/action_homeFragment_to_editWordFragment"
             app:destination="@id/editWordFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_wordDetailsFragment"
+            app:destination="@id/wordDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addWordFragment"
         android:name="com.keith.word_app_cs2.ui.fragments.manageWord.AddWordFragment"
@@ -28,5 +32,18 @@
         android:label="EditWordFragment"
         tools:layout="@layout/fragment_base_manage_word">
         <argument android:name="word_id" app:argType="integer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/wordDetailsFragment"
+        android:name="com.keith.word_app_cs2.ui.fragments.manageWord.WordDetailsFragment"
+        android:label="fragment_word_details"
+        tools:layout="@layout/fragment_word_details"
+        >
+        <action
+            android:id="@+id/action_wordDetailsFragment_to_editWordFragment"
+            app:destination="@id/editWordFragment"
+            />
+        <argument android:name="word_id" app:argType="integer" />
     </fragment>
 </navigation>

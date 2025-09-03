@@ -7,7 +7,8 @@ import com.keith.word_app_cs2.data.model.Word
 import com.keith.word_app_cs2.databinding.ItemLayoutWordBinding
 
 class WordsAdapter(
-    private var words: List<Word>
+    private var words: List<Word>,
+    private var onClick: (Word) -> Unit
 ): RecyclerView.Adapter<WordsAdapter.WordViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,6 +39,10 @@ class WordsAdapter(
             binding.run {
                 tvTitle.text = word.title
                 tvMeaning.text = word.meaning
+
+                llWord.setOnClickListener {
+                    onClick(word)
+                }
             }
         }
     }
