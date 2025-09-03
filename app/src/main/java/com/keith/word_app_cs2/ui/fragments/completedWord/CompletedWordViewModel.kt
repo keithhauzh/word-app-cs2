@@ -1,0 +1,21 @@
+package com.keith.word_app_cs2.ui.fragments.completedWord
+
+import androidx.lifecycle.ViewModel
+import com.keith.word_app_cs2.data.model.Word
+import com.keith.word_app_cs2.data.repo.WordsRepo
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+
+class CompletedWordViewModel(
+    private val repo: WordsRepo = WordsRepo.getInstance()
+) : ViewModel() {
+    private val _words = MutableStateFlow<List<Word>>(emptyList())
+    val words = _words.asStateFlow()
+    private val _finish = MutableSharedFlow<Unit>()
+    val finish: SharedFlow<Unit> = _finish
+    fun getWords(){
+        _words.value = repo.getAllWords().filter { it.completed == true }
+    }
+}
