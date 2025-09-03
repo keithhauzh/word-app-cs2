@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(
-            layoutInflater, container, false
+            inflater, container, false
         )
         return binding.root
     }
@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 
             findNavController().navigate(action)
         }
-        binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvWords.adapter = adapter
     }
 }

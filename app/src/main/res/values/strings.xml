@@ -15,4 +15,6 @@
     <string name="exampletext">exampletext</string>
     <string name="hello">Hello</string>
     <string name="definition_hello_world">Definition: Hello World</string>
+    <string name="new_word">New Word</string>
+    <string name="completed_word">Completed Word</string>
 </resources>

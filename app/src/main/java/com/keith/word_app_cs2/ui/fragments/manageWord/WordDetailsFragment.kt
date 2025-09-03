@@ -55,37 +55,6 @@ class WordDetailsFragment : Fragment() {
                 }
             }
         }
-
-        binding.run {
-            mbUpdate.setOnClickListener {
-                val action = WordDetailsFragmentDirections.actionWordDetailsFragmentToEditWordFragment(args.wordId)
-                findNavController().navigate(action)
-            }
-            mbDelete.setOnClickListener {
-                AlertDialog.Builder(requireContext())
-                    .setTitle("Are you sure?")
-                    .setMessage("You want to delete this word? Action can not be undone.")
-                    .setNegativeButton("Cancel") {dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .setPositiveButton("Delete") {dialog, _ ->
-                        viewModel.deleteWord(args.wordId)
-                        dialog.dismiss()
-                    }
-                    .show()
-            }
-            mbDone.setOnClickListener {
-                AlertDialog.Builder(requireContext())
-                    .setTitle("Are you sure?")
-                    .setMessage("Do you want to move this word to completed list.")
-                    .setNegativeButton("Yes") {dialog, _ ->
-                        viewModel.isDone(args.wordId)
-                        dialog.dismiss()
-                    }
-                    .setPositiveButton("No") {dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
             }
         }
     }
