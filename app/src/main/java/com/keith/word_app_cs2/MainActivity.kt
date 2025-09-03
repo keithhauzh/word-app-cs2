@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(
             R.id.navHostFragment
         ) as NavHostFragment
-        Log.d("navdebug", "yes")
         navController = navHost.findNavController()
 
         findViewById<BottomNavigationView>(R.id.nav_view)
