@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.words.collect {
                 adapter.setWords(it)
+                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
         binding.fabAdd.setOnClickListener {
