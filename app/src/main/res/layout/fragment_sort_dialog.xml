@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingVertical="@dimen/xxl"
-            android:paddingStart="@dimen/xxl">
+            android:paddingStart="@dimen/xxl"
+            android:paddingEnd="@dimen/xxxxs">
 
             <!-- Sort order -->
             <TextView
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/xxs"
                 android:layout_marginTop="@dimen/xl"
-                android:text="Sort order"
+                android:text="@string/sort_order"
                 android:textSize="@dimen/tx_xl"
                 android:textStyle="bold" />
 
@@ -42,7 +43,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ascending"
+                    android:text="@string/ascending"
                     android:textSize="@dimen/tx_l" />
 
                 <RadioButton
@@ -50,7 +51,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Descending"
+                    android:text="@string/descending"
                     android:textSize="@dimen/tx_l" />
             </RadioGroup>
 
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/xxs"
                 android:layout_marginTop="@dimen/xl"
-                android:text="Sort by"
+                android:text="@string/sort_by"
                 android:textSize="@dimen/tx_xl"
                 android:textStyle="bold" />
 
@@ -75,7 +76,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textSize="@dimen/tx_l" />
 
                 <RadioButton
@@ -83,7 +84,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Date"
+                    android:text="@string/date"
                     android:textSize="@dimen/tx_l" />
             </RadioGroup>
 
@@ -94,7 +95,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/xxxl"
                 android:paddingHorizontal="@dimen/xxxxl"
-                android:text="DONE"
+                android:text="@string/done"
                 app:cornerRadius="@dimen/s" />
 
         </LinearLayout>
