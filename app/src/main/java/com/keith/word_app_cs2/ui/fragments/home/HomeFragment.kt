@@ -47,18 +47,7 @@ class HomeFragment : Fragment() {
         setFragmentResultListener("sort_options") {_, bundle ->
             val sortOder = bundle.getString("sort_order", "ascending")
             val sortBy = bundle.getString("sort_by", "title")
-
-            lifecycleScope.launch {
-                viewModel.words.collect { words ->
-                    val sorted = when(sortBy) {
-                        "title" -> if(sortOder == "ascending") words.sortedBy { it.title } else words.sortedByDescending { it.title }
-                        "date" -> if(sortOder == "ascending") words.sortedBy { it.createdAt } else words.sortedByDescending { it.createdAt }
-                        else -> words
-                    }
-                    adapter.setWords(sorted)
-                    binding.llEmpty.visibility = if(sorted.isEmpty()) View.VISIBLE else View.GONE
-                }
-            }
+            viewModel.sortWords(sortOder, sortBy)
         }
         binding.mbSort.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToSortDialogFragment()

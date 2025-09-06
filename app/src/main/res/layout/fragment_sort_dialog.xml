@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.manageWord.SortDialogFragment">
+    tools:context=".ui.fragments.dialog.SortDialogFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/w_xxxxl"
