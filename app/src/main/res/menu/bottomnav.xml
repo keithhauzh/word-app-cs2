@@ -4,7 +4,6 @@
         android:id="@+id/homeFragment"
         android:title="@string/new_word"
         />
-
     <item
         android:id="@+id/completedWordFragment"
         android:title="@string/completed_word"
