@@ -44,6 +44,26 @@ class HomeFragment : Fragment() {
         setFragmentResultListener("manage_word") { _, _ ->
             viewModel.getWords()
         }
+        setFragmentResultListener("sort_options") {_, bundle ->
+            val sortOder = bundle.getString("sort_order", "ascending")
+            val sortBy = bundle.getString("sort_by", "title")
+
+            lifecycleScope.launch {
+                viewModel.words.collect { words ->
+                    val sorted = when(sortBy) {
+                        "title" -> if(sortOder == "ascending") words.sortedBy { it.title } else words.sortedByDescending { it.title }
+                        "date" -> if(sortOder == "ascending") words.sortedBy { it.createdAt } else words.sortedByDescending { it.createdAt }
+                        else -> words
+                    }
+                    adapter.setWords(sorted)
+                    binding.llEmpty.visibility = if(sorted.isEmpty()) View.VISIBLE else View.GONE
+                }
+            }
+        }
+        binding.mbSort.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSortDialogFragment()
+            findNavController().navigate(action)
+        }
     }
 
     fun setupAdapter() {
@@ -51,7 +71,6 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToWordDetailsFragment(
                 wordId = it.id!!,
             )
-
             findNavController().navigate(action)
         }
         binding.rvWords.layoutManager = LinearLayoutManager(requireContext())

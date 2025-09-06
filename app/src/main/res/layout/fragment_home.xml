@@ -37,6 +37,12 @@
         </LinearLayout>
     </FrameLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
@@ -46,5 +52,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
