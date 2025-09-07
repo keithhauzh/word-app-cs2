@@ -11,9 +11,18 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_homeFragment_to_addWordFragment"
-            app:destination="@id/addWordFragment" />
+            app:destination="@id/addWordFragment"
+            />
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_homeFragment_to_wordDetailsFragment"
             app:destination="@id/wordDetailsFragment" />
     </fragment>
@@ -38,6 +47,10 @@
         tools:layout="@layout/fragment_word_details"
         >
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_wordDetailsFragment_to_editWordFragment"
             app:destination="@id/editWordFragment"
             />
@@ -49,6 +62,10 @@
         android:label="fragment_completed_word"
         tools:layout="@layout/fragment_completed_word" >
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_completedWordFragment_to_wordDetailsFragment"
             app:destination="@id/wordDetailsFragment" />
     </fragment>
