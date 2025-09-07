@@ -31,4 +31,8 @@ class HomeViewModel(
         }
         _words.value = sorted
     }
+
+    fun search(search: String) {
+        _words.value = repo.getAllWords().filter { it.title.contains(search) }
+    }
 }

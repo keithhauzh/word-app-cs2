@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -64,12 +65,14 @@ class HomeFragment : Fragment() {
             val sortBy = bundle.getString("sort_by", "title")
             viewModel.sortWords(sortOder, sortBy)
         }
-//        binding.mbSort.setOnClickListener {
-//            val action = HomeFragmentDirections.actionHomeFragmentToSortDialogFragment()
-//            findNavController().navigate(action)
-//        }
+        binding.ivSort.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSortDialogFragment()
+            findNavController().navigate(action)
+        }
+        binding.etSearch.addTextChangedListener {
+            viewModel.search(it.toString().trim())
+        }
     }
-
     fun setupAdapter() {
         adapter = WordsAdapter(emptyList()) {
             val action = HomeFragmentDirections.actionHomeFragmentToWordDetailsFragment(
