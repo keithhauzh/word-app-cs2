@@ -43,4 +43,13 @@
             />
         <argument android:name="word_id" app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/completedWordFragment"
+        android:name="com.keith.word_app_cs2.ui.fragments.completedWord.CompletedWordFragment"
+        android:label="fragment_completed_word"
+        tools:layout="@layout/fragment_completed_word" >
+        <action
+            android:id="@+id/action_completedWordFragment_to_wordDetailsFragment"
+            app:destination="@id/wordDetailsFragment" />
+    </fragment>
 </navigation>
