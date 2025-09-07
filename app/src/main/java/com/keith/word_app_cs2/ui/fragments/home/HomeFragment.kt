@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
         val navController = navHostFragment.navController
 
         binding.navView.setupWithNavController(navController)
+
         setupAdapter()
 
         lifecycleScope.launch {
