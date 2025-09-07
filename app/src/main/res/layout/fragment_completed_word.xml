@@ -27,7 +27,7 @@
                     android:padding="@dimen/xxs"
                     android:drawableStart="@drawable/ic_search"
                     android:drawableTint="@color/light_grey"
-                    android:hint="Search"/>
+                    android:hint="@string/search"/>
                 <ImageView
                     android:id="@+id/ivSort"
                     android:layout_marginStart="@dimen/xxxxs"

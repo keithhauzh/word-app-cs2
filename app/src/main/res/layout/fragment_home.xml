@@ -29,7 +29,7 @@
                     android:padding="@dimen/xxs"
                     android:drawableStart="@drawable/ic_search"
                     android:drawableTint="@color/light_grey"
-                    android:hint="Search"/>
+                    android:hint="@string/search"/>
                 <ImageView
                     android:id="@+id/ivSort"
                     android:layout_marginStart="@dimen/xxxxs"
@@ -59,8 +59,8 @@
             android:orientation="vertical"
             >
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/xxxxxxxxl"
+                android:layout_height="@dimen/xxxxxxxxl"
                 android:src="@drawable/empty"
                 />
             <TextView
