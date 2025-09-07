@@ -15,7 +15,7 @@ class HomeViewModel(
         getWords()
     }
     fun getWords(){
-        _words.value = repo.getAllWords()
+        _words.value = repo.getAllWords().filter { it.completed == false }
     }
     fun sortWords(sortOrder: String, sortBy: String) {
         val sorted = when(sortBy) {

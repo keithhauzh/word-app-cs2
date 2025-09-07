@@ -29,7 +29,6 @@ class SortDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.root.setOnClickListener { dismiss() }
-
         lifecycleScope.launch {
             viewModel.error.collect {
                 val snackbar = Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
@@ -39,18 +38,16 @@ class SortDialogFragment : DialogFragment() {
                 snackbar.show()
             }
         }
-
         lifecycleScope.launch {
             viewModel.finish.collect { (sortOrder, sortBy) ->
                 val result = Bundle().apply {
-                    putString("sortOrder", sortOrder)
-                    putString("sortBy", sortBy)
+                    putString("sort_order", sortOrder)
+                    putString("sort_by", sortBy)
                 }
                 setFragmentResult("sort_options", result)
                 dismiss()
             }
         }
-
         binding.mbDone.setOnClickListener {
             val sortOrderId = binding.rgSortOrder.checkedRadioButtonId
             val sortById = binding.rgSortBy.checkedRadioButtonId
