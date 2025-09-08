@@ -18,4 +18,10 @@
     <string name="new_word">New Word</string>
     <string name="completed_word">Completed Word</string>
     <string name="you_have_no_completed_words_yet">You have no completed words yet</string>
+    <string name="date">Date</string>
+    <string name="sort_by">Sort by</string>
+    <string name="descending">Descending</string>
+    <string name="ascending">Ascending</string>
+    <string name="sort_order">Sort order</string>
+    <string name="search">Search</string>
 </resources>

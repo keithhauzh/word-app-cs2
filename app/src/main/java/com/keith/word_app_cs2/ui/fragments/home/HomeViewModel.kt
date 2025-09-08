@@ -15,6 +15,24 @@ class HomeViewModel(
         getWords()
     }
     fun getWords(){
-        _words.value = repo.getAllWords()
+        _words.value = repo.getAllWords().filter { it.completed == false }
+    }
+    fun sortWords(sortOrder: String, sortBy: String) {
+        val sorted = when(sortBy) {
+            "title" -> if(sortOrder == "ascending") {_words.value.sortedBy { it.title }
+            } else {
+                _words.value.sortedByDescending { it.title }
+            }
+            "date" -> if(sortOrder == "ascending") {_words.value.sortedBy { it.createdAt }
+            } else {
+                _words.value.sortedByDescending { it.createdAt }
+            }
+            else -> _words.value
+        }
+        _words.value = sorted
+    }
+
+    fun search(search: String) {
+        _words.value = repo.getAllWords().filter { it.title.contains(search) }
     }
 }
