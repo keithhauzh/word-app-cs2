@@ -5,10 +5,4 @@
         android:fromXDelta="-100%"
         android:duration="500"
         />
-
-    <alpha
-        android:fromAlpha="1"
-        android:toAlpha="0"
-        android:duration="500"
-        />
 </set>
