@@ -12,17 +12,13 @@
         tools:layout="@layout/fragment_home" >
         <action
             app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/to_left"
             android:id="@+id/action_homeFragment_to_addWordFragment"
             app:destination="@id/addWordFragment"
             />
         <action
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_homeFragment_to_wordDetailsFragment"
             app:destination="@id/wordDetailsFragment" />
     </fragment>
