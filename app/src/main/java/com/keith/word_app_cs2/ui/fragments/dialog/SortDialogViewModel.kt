@@ -11,12 +11,10 @@ class SortDialogViewModel: ViewModel() {
     val finish = _finish.asSharedFlow()
     private val _error = MutableSharedFlow<String>()
     val error = _error.asSharedFlow()
-
     fun onDone(sortOrderId: Int, sortById: Int, ascId: Int, descId: Int, titleId:Int, dateId:Int) {
         try {
             require(sortOrderId != -1) {"Please select sort order"}
             require(sortById != -1) {"Please select sort by"}
-
             val sortOrder = when(sortOrderId) {
                 ascId -> "ascending"
                 descId -> "descending"
