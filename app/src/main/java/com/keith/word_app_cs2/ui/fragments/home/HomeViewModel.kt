@@ -5,17 +5,15 @@ import com.keith.word_app_cs2.data.model.Word
 import com.keith.word_app_cs2.data.repo.WordsRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlin.collections.filter
 
 class HomeViewModel(
     private val repo: WordsRepo = WordsRepo.getInstance()
 ): ViewModel(){
     private val _words = MutableStateFlow<List<Word>>(emptyList())
     val words = _words.asStateFlow()
-    init {
-        getWords()
-    }
     fun getWords(){
-        _words.value = repo.getAllWords().filter { it.completed == false }
+        _words.value = repo.getAllWords().filter {!it.completed}
     }
     fun sortWords(sortOrder: String, sortBy: String) {
         val sorted = when(sortBy) {
@@ -33,6 +31,7 @@ class HomeViewModel(
     }
 
     fun search(search: String) {
-        _words.value = repo.getAllWords().filter { it.title.contains(search) }
+        _words.value = repo.getAllWords().filter {!it.completed}.filter { it.title.contains(search) }
+
     }
 }
