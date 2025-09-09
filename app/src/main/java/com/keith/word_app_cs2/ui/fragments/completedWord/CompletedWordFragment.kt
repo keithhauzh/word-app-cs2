@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -55,6 +56,18 @@ class CompletedWordFragment : Fragment() {
         setFragmentResultListener("manage_word") { _, _ ->
             viewModel.getWords()
         }
+        setFragmentResultListener("sort_options") {_, bundle ->
+            val sortOder = bundle.getString("sort_order", "ascending")
+            val sortBy = bundle.getString("sort_by", "title")
+            viewModel.sortWords(sortOder, sortBy)
+        }
+        binding.ivSort.setOnClickListener {
+            val action = CompletedWordFragmentDirections.actionCompletedWordFragmentToSortDialogFragment()
+            findNavController().navigate(action)
+        }
+        binding.etSearch.addTextChangedListener {
+            viewModel.search(it.toString().trim())
+        }
 
         lifecycleScope.launch {
             viewModel.words.collect { words ->
@@ -62,7 +75,6 @@ class CompletedWordFragment : Fragment() {
                 binding.llEmpty.visibility = if(words.isEmpty()) View.VISIBLE else View.GONE
             }
         }
-
         viewModel.getWords()
     }
 }
