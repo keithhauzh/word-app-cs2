@@ -44,14 +44,9 @@ class EditWordViewModel(
                     )
                 )
             }
-            viewModelScope.launch {
-                _finish.emit(Unit)
-            }
-
+            viewModelScope.launch { _finish.emit(Unit) }
         } catch (e: Exception) {
-            viewModelScope.launch {
-                _error.emit(e.message.toString())
-            }
+            viewModelScope.launch { _error.emit(e.message.toString()) }
         }
     }
 }

@@ -36,29 +36,32 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val navHostFragment = requireActivity().supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.navView.setupWithNavController(navController)
-
         setupAdapter()
-
-        lifecycleScope.launch {
-            viewModel.words.collect {
-                adapter.setWords(it)
-                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
-            }
-        }
-
+        displayWord()
+        sortAndSearch()
         binding.fabAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAddWordFragment()
             navController.navigate(action)
         }
-
         setFragmentResultListener("manage_word") { _, _ ->
             viewModel.getWords()
         }
+    }
+    fun setupAdapter() {
+        adapter = WordsAdapter(emptyList()) {
+            val action = HomeFragmentDirections.actionHomeFragmentToWordDetailsFragment(
+                wordId = it.id!!,
+            )
+            findNavController().navigate(action)
+        }
+        binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvWords.adapter = adapter
+    }
+    fun sortAndSearch() {
         setFragmentResultListener("sort_options") {_, bundle ->
             val sortOder = bundle.getString("sort_order", "ascending")
             val sortBy = bundle.getString("sort_by", "title")
@@ -72,14 +75,10 @@ class HomeFragment : Fragment() {
             viewModel.search(it.toString().trim())
         }
     }
-    fun setupAdapter() {
-        adapter = WordsAdapter(emptyList()) {
-            val action = HomeFragmentDirections.actionHomeFragmentToWordDetailsFragment(
-                wordId = it.id!!,
-            )
-            findNavController().navigate(action)
+    fun displayWord() = lifecycleScope.launch {
+        viewModel.words.collect {
+            adapter.setWords(it)
+            binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
         }
-        binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvWords.adapter = adapter
     }
 }

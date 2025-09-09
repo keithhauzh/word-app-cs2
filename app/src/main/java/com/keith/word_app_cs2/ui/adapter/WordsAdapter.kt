@@ -39,7 +39,6 @@ class WordsAdapter(
             binding.run {
                 tvTitle.text = word.title
                 tvMeaning.text = word.meaning
-
                 llWord.setOnClickListener {
                     onClick(word)
                 }

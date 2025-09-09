@@ -35,15 +35,7 @@ class EditWordFragment: Fragment() {
         viewModel.getWord(args.wordId)
         displayWord()
         submitUpdatedWord()
-        lifecycleScope.launch {
-            viewModel.error.collect {
-                val snackbar = Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
-                snackbar.setBackgroundTint(
-                    ContextCompat.getColor(requireContext(), R.color.red)
-                )
-                snackbar.show()
-            }
-        }
+        showError()
         lifecycleScope.launch {
             viewModel.finish.collect {
                 setFragmentResult("manage_word", Bundle())
@@ -74,6 +66,15 @@ class EditWordFragment: Fragment() {
                 val details = etDetails.text.toString()
                 viewModel.updateWord(title, meaning, synonyms, details)
             }
+        }
+    }
+    fun showError() = lifecycleScope.launch {
+        viewModel.error.collect {
+            val snackbar = Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
+            snackbar.setBackgroundTint(
+                ContextCompat.getColor(requireContext(), R.color.red)
+            )
+            snackbar.show()
         }
     }
 }
