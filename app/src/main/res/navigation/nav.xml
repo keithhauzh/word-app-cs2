@@ -67,6 +67,9 @@
             app:popExitAnim="@anim/to_right"
             android:id="@+id/action_completedWordFragment_to_wordDetailsFragment"
             app:destination="@id/wordDetailsFragment" />
+        <action
+            android:id="@+id/action_completedWordFragment_to_sortDialogFragment"
+            app:destination="@id/sortDialogFragment" />
     </fragment>
     <dialog
         android:id="@+id/sortDialogFragment"
