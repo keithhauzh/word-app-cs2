@@ -69,8 +69,6 @@
                 android:text="@string/you_have_no_word_yet"
                 />
         </LinearLayout>
-    </FrameLayout>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
@@ -80,7 +78,7 @@
             android:layout_marginEnd="@dimen/xl"
             android:layout_marginBottom="@dimen/xl"
             />
-
+    </FrameLayout>
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
