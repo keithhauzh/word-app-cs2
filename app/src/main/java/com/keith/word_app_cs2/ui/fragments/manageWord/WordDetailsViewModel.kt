@@ -31,8 +31,5 @@ class WordDetailsViewModel(
     fun isDone(id: Int) {
         repo.isCompleted(id)
         _word.value = repo.getWordById(id)
-//        viewModelScope.launch {
-//            _finish.emit(Unit)
-//        }
     }
 }

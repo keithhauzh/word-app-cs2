@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.keith.word_app_cs2.R
 import com.keith.word_app_cs2.databinding.FragmentBaseManageWordBinding
 import kotlinx.coroutines.launch
@@ -33,6 +35,15 @@ class EditWordFragment: Fragment() {
         viewModel.getWord(args.wordId)
         displayWord()
         submitUpdatedWord()
+        lifecycleScope.launch {
+            viewModel.error.collect {
+                val snackbar = Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
+                snackbar.setBackgroundTint(
+                    ContextCompat.getColor(requireContext(), R.color.red)
+                )
+                snackbar.show()
+            }
+        }
         lifecycleScope.launch {
             viewModel.finish.collect {
                 setFragmentResult("manage_word", Bundle())
