@@ -32,6 +32,20 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        error()
+        finishObserver()
+
+        binding.mbSubmit.setOnClickListener {
+            viewModel.addWord(
+                title = binding.etTitle.text.toString(),
+                meaning = binding.etMeaning.text.toString(),
+                synonyms = binding.etSynonyms.text.toString(),
+                details = binding.etDetails.text.toString()
+            )
+        }
+    }
+    private fun error() {
         lifecycleScope.launch {
             viewModel.error.collect {
                 val snackbar = Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
@@ -41,19 +55,14 @@ class AddWordFragment : Fragment() {
                 snackbar.show()
             }
         }
+    }
+
+    private fun finishObserver() {
         lifecycleScope.launch {
             viewModel.finish.collect {
                 setFragmentResult("manage_word", Bundle())
                 findNavController().popBackStack()
             }
-        }
-        binding.mbSubmit.setOnClickListener {
-            viewModel.addWord(
-                title = binding.etTitle.text.toString(),
-                meaning = binding.etMeaning.text.toString(),
-                synonyms = binding.etSynonyms.text.toString(),
-                details = binding.etDetails.text.toString()
-            )
         }
     }
 }
