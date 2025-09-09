@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
                 binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
+
         binding.fabAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAddWordFragment()
             navController.navigate(action)
