@@ -15,6 +15,8 @@ class EditWordViewModel(
 ): ViewModel() {
     private val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()
+    private val _error = MutableSharedFlow<String>()
+    val error = _error.asSharedFlow()
     private var _word = MutableStateFlow(Word(
         title = "",
         meaning = "",
@@ -30,15 +32,26 @@ class EditWordViewModel(
         }
     }
     fun updateWord(title: String, meaning: String, synonyms: String, details: String) {
-        _word.value.id?.let {
-            repo.updateWord(
-                id = it,
-                word = _word.value.copy(title = title, meaning = meaning, synonyms = synonyms, details = details
+        try {
+            require(title.isNotBlank()) {"Title cannot be blank"}
+            require(meaning.isNotBlank()) {"Meaning cannot be blank"}
+            require(synonyms.isNotBlank()) {"Synonyms cannot be blank"}
+            require(details.isNotBlank()) {"Details cannot be blank"}
+            _word.value.id?.let {
+                repo.updateWord(
+                    id = it,
+                    word = _word.value.copy(title = title, meaning = meaning, synonyms = synonyms, details = details
+                    )
                 )
-            )
-        }
-        viewModelScope.launch {
-            _finish.emit(Unit)
+            }
+            viewModelScope.launch {
+                _finish.emit(Unit)
+            }
+
+        } catch (e: Exception) {
+            viewModelScope.launch {
+                _error.emit(e.message.toString())
+            }
         }
     }
 }

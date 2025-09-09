@@ -13,18 +13,30 @@ class AddWordViewModel(
 ) : ViewModel() {
     private val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()
+    private val _error = MutableSharedFlow<String>()
+    val error = _error.asSharedFlow()
 
     fun addWord(title: String, meaning: String, synonyms: String, details: String) {
-        val word = Word(
-            title = title,
-            meaning = meaning,
-            synonyms = synonyms,
-            details = details,
-            createdAt = System.currentTimeMillis()
-        )
-        repo.add(word)
-        viewModelScope.launch {
-            _finish.emit(Unit)
+        try {
+            val word = Word(
+                title = title,
+                meaning = meaning,
+                synonyms = synonyms,
+                details = details,
+                createdAt = System.currentTimeMillis()
+            )
+            require(title.isNotBlank()) {"Title cannot be blank"}
+            require(meaning.isNotBlank()) {"Meaning cannot be blank"}
+            require(synonyms.isNotBlank()) {"Synonyms cannot be blank"}
+            require(details.isNotBlank()) {"Details cannot be blank"}
+            repo.add(word)
+            viewModelScope.launch {
+                _finish.emit(Unit)
+            }
+        } catch (e: Exception) {
+            viewModelScope.launch {
+                _error.emit(e.message.toString())
+            }
         }
     }
 }
