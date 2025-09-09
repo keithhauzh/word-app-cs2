@@ -38,36 +38,11 @@ class CompletedWordFragment : Fragment() {
 
     override fun onViewCreated(view:View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navHostFragment = requireActivity().supportFragmentManager
-            .findFragmentById(R.id.navHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
 
-        adapter = WordsAdapter(emptyList()){
-            val action = CompletedWordFragmentDirections.actionCompletedWordFragmentToWordDetailsFragment(
-                wordId = it.id!!,
-            )
-            findNavController().navigate(action)
-        }
-
-        binding.navView.setupWithNavController(navController)
-        binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvWords.adapter = adapter
-
-        setFragmentResultListener("manage_word") { _, _ ->
-            viewModel.getWords()
-        }
-        setFragmentResultListener("sort_options") {_, bundle ->
-            val sortOder = bundle.getString("sort_order", "ascending")
-            val sortBy = bundle.getString("sort_by", "title")
-            viewModel.sortWords(sortOder, sortBy)
-        }
-        binding.ivSort.setOnClickListener {
-            val action = CompletedWordFragmentDirections.actionCompletedWordFragmentToSortDialogFragment()
-            findNavController().navigate(action)
-        }
-        binding.etSearch.addTextChangedListener {
-            viewModel.search(it.toString().trim())
-        }
+        setupNavigation()
+        setupAdapter()
+        setupFragmentResultListeners()
+        sortAndSearch()
 
         lifecycleScope.launch {
             viewModel.words.collect { words ->
@@ -76,5 +51,44 @@ class CompletedWordFragment : Fragment() {
             }
         }
         viewModel.getWords()
+    }
+
+    private fun setupNavigation() {
+        val navHostFragment = requireActivity().supportFragmentManager
+            .findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.navView.setupWithNavController(navController)
+    }
+
+    private fun setupAdapter() {
+        adapter = WordsAdapter(emptyList()){
+            val action = CompletedWordFragmentDirections.actionCompletedWordFragmentToWordDetailsFragment(
+                wordId = it.id!!,
+            )
+            findNavController().navigate(action)
+        }
+        binding.rvWords.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvWords.adapter = adapter
+    }
+
+    private fun setupFragmentResultListeners() {
+        setFragmentResultListener("manage_word") { _, _ ->
+            viewModel.getWords()
+        }
+        setFragmentResultListener("sort_options") {_, bundle ->
+            val sortOder = bundle.getString("sort_order", "ascending")
+            val sortBy = bundle.getString("sort_by", "title")
+            viewModel.sortWords(sortOder, sortBy)
+        }
+    }
+
+    private fun sortAndSearch() {
+        binding.ivSort.setOnClickListener {
+            val action = CompletedWordFragmentDirections.actionCompletedWordFragmentToSortDialogFragment()
+            findNavController().navigate(action)
+        }
+        binding.etSearch.addTextChangedListener {
+            viewModel.search(it.toString().trim())
+        }
     }
 }
