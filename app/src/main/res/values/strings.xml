@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">word-app-cs2</string>
+    <string name="title">Title</string>
+    <string name="meaning">Meaning</string>
+    <string name="synonyms">Synonyms</string>
+    <string name="details">Details</string>
+    <string name="add">Add</string>
+    <string name="you_have_no_word_yet">You have no word yet</string>
+    <string name="update">Update</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="done">Done</string>
+    <string name="delete">Delete</string>
+    <string name="synonym">Synonym</string>
+    <string name="exampletext">exampletext</string>
+    <string name="hello">Hello</string>
+    <string name="definition_hello_world">Definition: Hello World</string>
+    <string name="new_word">New Word</string>
+    <string name="completed_word">Completed Word</string>
+    <string name="you_have_no_completed_words_yet">You have no completed words yet</string>
+    <string name="date">Date</string>
+    <string name="sort_by">Sort by</string>
+    <string name="descending">Descending</string>
+    <string name="ascending">Ascending</string>
+    <string name="sort_order">Sort order</string>
+    <string name="search">Search</string>
 </resources>
