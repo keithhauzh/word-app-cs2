@@ -1,7 +1,10 @@
 package com.keith.word_app_cs2.ui.fragments.manageWord
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.keith.word_app_cs2.data.model.Word
 import com.keith.word_app_cs2.data.repo.WordsRepo
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -9,9 +12,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import com.keith.word_app_cs2.MyApp
 
 class EditWordViewModel(
     private val repo: WordsRepo = WordsRepo.getInstance()
+//    private val repo: WordsRepo
 ): ViewModel() {
     private val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()
@@ -48,5 +54,14 @@ class EditWordViewModel(
         } catch (e: Exception) {
             viewModelScope.launch { _error.emit(e.message.toString()) }
         }
+    }
+
+    companion object {
+//        val Factory: ViewModelProvider.Factory = viewModelFactory {
+//            initializer {
+//                val myRepository = (this[APPLICATION_KEY] as MyApp).repo
+//                EditWordViewModel(myRepository)
+//            }
+//        }
     }
 }
