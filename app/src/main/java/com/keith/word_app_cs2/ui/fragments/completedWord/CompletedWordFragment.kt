@@ -20,7 +20,9 @@ import com.keith.word_app_cs2.R
 
 class CompletedWordFragment : Fragment() {
     private lateinit var binding: FragmentCompletedWordBinding
-    private val viewModel: CompletedWordViewModel by viewModels()
+    private val viewModel: CompletedWordViewModel by viewModels {
+        CompletedWordViewModel.Factory
+    }
     private lateinit var adapter: WordsAdapter
 
     override fun onCreateView(

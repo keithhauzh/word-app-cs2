@@ -15,8 +15,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import com.keith.word_app_cs2.MyApp
 
 class AddWordViewModel(
-    private val repo: WordsRepo = WordsRepo.getInstance()
-//    private val repo: WordsRepo
+    private val repo: WordsRepo
 ) : ViewModel() {
     private val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()
@@ -48,11 +47,11 @@ class AddWordViewModel(
     }
 
     companion object {
-//        val Factory: ViewModelProvider.Factory = viewModelFactory {
-//            initializer {
-//                val myRepository = (this[APPLICATION_KEY] as MyApp).repo
-//                AddWordViewModel(myRepository)
-//            }
-//        }
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val myRepository = (this[APPLICATION_KEY] as MyApp).repo
+                AddWordViewModel(myRepository)
+            }
+        }
     }
 }
