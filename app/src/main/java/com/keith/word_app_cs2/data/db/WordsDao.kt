@@ -16,12 +16,12 @@ interface WordsDao {
     fun getWordById(id: Int): Word?
 
     @Insert
-    fun addWord(product: Word)
+    fun addWord(word: Word)
 
     @Update
-    fun update(product: Word)
+    fun update(word: Word)
 
-    @Query("UPDATE Word SET completed = NOT completed WHERE id=:id")
+    @Query("UPDATE Word SET completed = 1 WHERE id=:id")
     fun isCompleted(id: Int)
 
     @Query("DELETE FROM word WHERE id = :id")

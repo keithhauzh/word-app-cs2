@@ -7,9 +7,10 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.filter
 
 class CompletedWordViewModel(
-    private val repo: WordsRepo = WordsRepo.getInstance()
+    private val repo: WordsRepo
 ) : ViewModel() {
     private val _words = MutableStateFlow<List<Word>>(emptyList())
     val words = _words.asStateFlow()
@@ -33,6 +34,6 @@ class CompletedWordViewModel(
         _words.value = sorted
     }
     fun search(search: String) {
-        _words.value = repo.getAllWords().filter {it.completed == true}.filter { it.title.contains(search) }
+        _words.value = repo.getAllWords().filter {it.completed == true}.filter { it.title.contains(search) } as List<Word>
     }
 }
