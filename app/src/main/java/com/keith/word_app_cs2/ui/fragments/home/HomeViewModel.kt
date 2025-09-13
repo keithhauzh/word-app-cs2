@@ -20,6 +20,10 @@ class HomeViewModel(
 ): ViewModel(){
     private val _words = MutableStateFlow<List<Word>>(emptyList())
     val words = _words.asStateFlow()
+
+    init {
+        getWords()
+    }
     fun getWords(){
         viewModelScope.launch(Dispatchers.IO) {
             repo.getAllWords().collect { words ->
