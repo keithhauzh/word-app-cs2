@@ -20,7 +20,9 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModel.Factory
+    }
     private lateinit var adapter: WordsAdapter
 
     override fun onCreateView(

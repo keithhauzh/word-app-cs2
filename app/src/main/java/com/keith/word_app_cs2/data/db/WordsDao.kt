@@ -20,7 +20,6 @@ interface WordsDao {
 
     @Update
     fun update(word: Word)
-
     @Query("UPDATE Word SET completed = 1 WHERE id=:id")
     fun isCompleted(id: Int)
 

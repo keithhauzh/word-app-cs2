@@ -1,33 +1,32 @@
-package com.keith.word_app_cs2.ui.fragments.home
+package com.keith.word_app_cs2.ui.fragments.completedWord
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.keith.word_app_cs2.data.model.Word
-import com.keith.word_app_cs2.data.repo.WordsRepo
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlin.collections.filter
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.keith.word_app_cs2.data.model.Word
+import com.keith.word_app_cs2.data.repo.WordsRepo
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import com.keith.word_app_cs2.MyApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class CompletedWordViewModel(
     private val repo: WordsRepo
-): ViewModel(){
+) : ViewModel() {
     private val _words = MutableStateFlow<List<Word>>(emptyList())
     val words = _words.asStateFlow()
-
-    init {
-        getWords()
-    }
+    private val _finish = MutableSharedFlow<Unit>()
+    val finish: SharedFlow<Unit> = _finish
     fun getWords(){
         viewModelScope.launch(Dispatchers.IO) {
             repo.getAllWords().collect { words ->
-                _words.value = words.filter { !it.completed}
+                _words.value = words.filter { it.completed == true }
             }
         }
     }
@@ -49,7 +48,7 @@ class HomeViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             repo.getAllWords().collect { words ->
                 _words.value = words
-                    .filter {!it.completed}
+                    .filter {it.completed == true}
                     .filter { it.title.contains(search) }
             }
         }
@@ -58,7 +57,7 @@ class HomeViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val myRepository = (this[APPLICATION_KEY] as MyApp).repo
-                HomeViewModel(myRepository)
+                CompletedWordViewModel(myRepository)
             }
         }
     }
