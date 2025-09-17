@@ -17,7 +17,9 @@ import com.keith.word_app_cs2.databinding.FragmentBaseManageWordBinding
 import kotlinx.coroutines.launch
 
 class EditWordFragment: Fragment() {
-    private val viewModel: EditWordViewModel by viewModels()
+    private val viewModel: EditWordViewModel by viewModels {
+        EditWordViewModel.Factory
+    }
     private lateinit var binding: FragmentBaseManageWordBinding
     private val args: EditWordFragmentArgs by navArgs()
 

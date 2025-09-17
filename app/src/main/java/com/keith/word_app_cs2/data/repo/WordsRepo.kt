@@ -1,37 +1,31 @@
 package com.keith.word_app_cs2.data.repo
 
+import com.keith.word_app_cs2.data.db.WordsDao
 import com.keith.word_app_cs2.data.model.Word
+import kotlinx.coroutines.flow.Flow
 
-class WordsRepo private constructor(){
-    val map = mutableMapOf<Int, Word>()
-    var counter = 0
+class WordsRepo(
+    private val dao: WordsDao
+) {
     fun add(word: Word) {
-        map[++counter] = word.copy(id = counter)
+        dao.addWord(word)
     }
+    fun getAllWords() : Flow<List<Word>> {
+        return dao.getAllWords()
+    }
+
     fun getWordById(id: Int): Word? {
-        return map[id]
+        return dao.getWordById(id)
     }
-    fun getAllWords() = map.values.toList()
-    fun deleteWord(id: Int) {
-        map.remove(id)
-    }
-    fun updateWord(id: Int, word: Word) {
-        map[id] = word
+    fun updateWord(word: Word) {
+        dao.update(word)
     }
 
     fun isCompleted(id: Int) {
-        map[id]?.let { word ->
-            map[id] = word.copy(completed = true)
-        }
+        dao.isCompleted(id)
     }
 
-    companion object {
-        private var instance: WordsRepo? = null
-        fun getInstance(): WordsRepo {
-            if(instance == null) {
-                instance = WordsRepo()
-            }
-            return instance!!
-        }
+    fun deleteWord(id: Int) {
+        dao.delete(id)
     }
 }

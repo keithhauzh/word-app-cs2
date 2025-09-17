@@ -16,7 +16,9 @@ import com.keith.word_app_cs2.databinding.FragmentBaseManageWordBinding
 import kotlinx.coroutines.launch
 
 class AddWordFragment : Fragment() {
-    private val viewModel: AddWordViewModel by viewModels()
+    private val viewModel: AddWordViewModel by viewModels {
+        AddWordViewModel.Factory
+    }
     private lateinit var binding: FragmentBaseManageWordBinding
 
     override fun onCreateView(
