@@ -16,7 +16,9 @@ import com.keith.word_app_cs2.databinding.FragmentWordDetailsBinding
 import kotlinx.coroutines.launch
 
 class WordDetailsFragment : Fragment() {
-    private val viewModel: WordDetailsViewModel by viewModels()
+    private val viewModel: WordDetailsViewModel by viewModels {
+        WordDetailsViewModel.Factory
+    }
     private lateinit var binding: FragmentWordDetailsBinding
     private val args: WordDetailsFragmentArgs by navArgs()
     override fun onCreateView(
